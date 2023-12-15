@@ -1,0 +1,35 @@
+<section>
+    <ul>
+        <li>
+            <a 
+                (click)="setActive('Fotos')" 
+                [ngClass]="" [ngClass]="{'active': activeLink === 'Fotos'}" 
+                [routerLink]="['/']"
+            >
+                Fotos
+            </a>
+        </li>
+        <li>
+            <a 
+                (click)="setActive('Álbuns')" 
+                [ngClass]="{'active': activeLink === 'Álbuns'}" 
+                [routerLink]="['album/:id']"
+            >
+                Álbuns
+            </a>
+        </li>
+        <li>
+            <a 
+                (click)="setActive('Lixeira')" 
+                [ngClass]="{'active': activeLink === 'Lixeira'}" 
+                [routerLink]="['bin']"
+            >
+                Lixeira
+            </a>
+        </li>
+        <li>
+            <a href="#">Login</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</section>
