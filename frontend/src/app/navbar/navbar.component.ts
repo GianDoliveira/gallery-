@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { PhotosComponent } from '../photos/photos.component';
 import { AlbumComponent } from '../album/album.component';
 import { BinComponent } from '../bin/bin.component';
@@ -20,10 +21,18 @@ import { BinComponent } from '../bin/bin.component';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-  activeLink: string = ''; 
+  activeLink: string = '';
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.setActiveLink();
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.setActiveLink();
+      });
   }
 
   setActive(link: string) {
@@ -31,13 +40,13 @@ export class NavbarComponent implements OnInit {
   }
 
   setActiveLink() {
-    const currentLocation = window.location.href;
+    const currentRoute = this.router.url;
 
-    if (currentLocation.includes('/')) {
+    if (currentRoute === '/') {
       this.activeLink = 'Fotos';
-    } else if (currentLocation.includes('album/:id')) {
+    } else if (currentRoute.startsWith('/album/')) {
       this.activeLink = 'Álbuns';
-    } else if (currentLocation.includes('bin')) {
+    } else if (currentRoute === '/bin') {
       this.activeLink = 'Lixeira';
     }
   }

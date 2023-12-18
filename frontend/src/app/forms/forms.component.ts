@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NG_ICON_DIRECTIVES, provideIcons, provideNgIconsConfig } from '@ng-icons/core';
+import { NG_ICON_DIRECTIVES, provideIcons } from '@ng-icons/core';
 import { bootstrapGoogle } from '@ng-icons/bootstrap-icons';
 import { bootstrapFacebook } from '@ng-icons/bootstrap-icons';
 import { bootstrapTwitter } from '@ng-icons/bootstrap-icons';
