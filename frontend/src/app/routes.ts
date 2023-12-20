@@ -1,7 +1,7 @@
 import { Routes } from "@angular/router";
 import { PhotosComponent } from "./photos/photos.component";
 import { AlbumComponent } from "./album/album.component";
-import { BinComponent } from "./bin/bin.component";
+import { TrashComponent } from "./trash/trash.component";
 
 const routeConfig: Routes = [
     {
@@ -10,13 +10,13 @@ const routeConfig: Routes = [
         title: 'Galeria de Fotos'
     },
     {
-        path: 'album/:id',
+        path: 'album',
         component: AlbumComponent,
         title: 'Álbuns'
     },
     {
-        path: 'bin',
-        component: BinComponent,
+        path: 'trash',
+        component: TrashComponent,
         title: 'Lixeira'
     },
 

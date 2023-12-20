@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+}
+.content {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+img {
+    width: 200px;
+    height: 100px;
+}
+
+.trash {
+    display: flex;
+    flex-direction: column;
+}
+
+.trash-items {
+    margin: 10px 0 5px 0;
+}

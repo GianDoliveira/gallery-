@@ -2,9 +2,15 @@ import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterModule, Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+
 import { PhotosComponent } from '../photos/photos.component';
 import { AlbumComponent } from '../album/album.component';
-import { BinComponent } from '../bin/bin.component';
+import { TrashComponent } from "../trash/trash.component"
+
+import { NG_ICON_DIRECTIVES, provideIcons } from '@ng-icons/core';
+import { bootstrapImages } from '@ng-icons/bootstrap-icons';
+import { bootstrapCollectionFill } from '@ng-icons/bootstrap-icons';
+import { bootstrapTrash } from '@ng-icons/bootstrap-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +21,15 @@ import { BinComponent } from '../bin/bin.component';
     RouterLink,
     PhotosComponent,
     AlbumComponent,
-    BinComponent
+    TrashComponent,
+    NG_ICON_DIRECTIVES
   ],
+  providers: [
+    provideIcons({
+      bootstrapImages, 
+      bootstrapCollectionFill, 
+      bootstrapTrash
+  })],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -44,9 +57,9 @@ export class NavbarComponent implements OnInit {
 
     if (currentRoute === '/') {
       this.activeLink = 'Fotos';
-    } else if (currentRoute.startsWith('/album/')) {
+    } else if (currentRoute.startsWith('/album')) {
       this.activeLink = 'Álbuns';
-    } else if (currentRoute === '/bin') {
+    } else if (currentRoute === '/trash') {
       this.activeLink = 'Lixeira';
     }
   }

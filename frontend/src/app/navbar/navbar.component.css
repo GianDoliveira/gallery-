@@ -1,40 +1,35 @@
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 0 3rem 0 1rem;
     overflow: hidden;
-    background-color: #bdddbf;
+    background: linear-gradient(to top, #e2e2e2, #bdddbf);
     position: fixed;
     top: 0;
-    width: 100%;
-}
-
-li {
-    float: left;
-}
-li:last-child {
-    position: relative;
-    right: 10px;
-    float: right;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 li a {
-    display: block;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     color: black;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 74px;
     text-decoration: none;
 }
 
 li a:hover {
-    background-color: #707070;
+    background-color: #7faa9a;
     transition: 0.6s;
     color: white;
 }
 
-a {
-    display: block;
-    padding: 8px;
+.icon {
+    position: relative;
+    right: 20px;
 }
 
 .nav-link {
