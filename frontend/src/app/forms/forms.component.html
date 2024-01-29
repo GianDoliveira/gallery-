@@ -1,7 +1,7 @@
 <main>
     <section class="container" #containerElement id="container">
         <div class="form-container sign-up">
-            <form>
+            <form (submit)="register()">
                 <h1>Cadastre-se</h1>
                 <div class="social-icons">
                     <a href="#"> <ng-icon name="bootstrapGoogle"></ng-icon> </a>
@@ -9,15 +9,15 @@
                     <a href="#"> <ng-icon name="bootstrapTwitter"></ng-icon> </a>
                 </div>
                 <span>ou use seu e-mail para cadastro</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="E-mail">
-                <input type="password" placeholder="Senha">
-                <button>Cadastrar</button>
+                <input type="text" id="username" (ngModel)="user.username" required placeholder="Nome de usuário">
+                <input type="email" id="email1" (ngModel)="user.email" required placeholder="E-mail">
+                <input type="password" id="password1" (ngModel)="user.password" required placeholder="Senha">
+                <button (click)="registerBtn()">Cadastrar</button>
             </form>
         </div>
 
         <div class="form-container sign-in">
-            <form>
+            <form (submit)="login()">
                 <h1>Login</h1>
                 <div class="social-icons">
                     <a href="#"> <ng-icon name="bootstrapGoogle"></ng-icon> </a>
@@ -25,8 +25,8 @@
                     <a href="#"> <ng-icon name="bootstrapTwitter"></ng-icon> </a>
                 </div>
                 <span>ou use seu e-mail e senha</span>
-                <input type="email" placeholder="E-mail">
-                <input type="password" placeholder="Senha">
+                <input type="email" id="email2" (ngModel)="user.email" required placeholder="E-mail">
+                <input type="password" id="password2" (ngModel)="user.password" required placeholder="Senha">
                 <a href="#">Esqueceu a sua senha ?</a>
                 <button>Login</button>
             </form>
@@ -37,7 +37,7 @@
                     <h1>Bem-vindo de volta!</h1>
                     <p>Insira seus dados pessoais para usar todos os recursos do site</p>
                     <button 
-                        (click)="login()"
+                        (click)="btnLogin()"
                         class="hidden" 
                         id="login"
                     >
@@ -48,7 +48,7 @@
                     <h1>A paz, amigo!</h1>
                     <p>Registre-se com seus dados pessoais para usar todos os recursos do site</p>
                     <button 
-                        (click)="register()"
+                        (click)="btnRegister()"
                         class="hidden" 
                         id="register"
                     >

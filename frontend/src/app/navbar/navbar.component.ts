@@ -5,12 +5,12 @@ import { filter } from 'rxjs/operators';
 
 import { PhotosComponent } from '../photos/photos.component';
 import { AlbumComponent } from '../album/album.component';
-import { TrashComponent } from "../trash/trash.component"
+import { TrashComponent } from "../trash/trash.component";
+
+import { UserService } from '../user.service';
 
 import { NG_ICON_DIRECTIVES, provideIcons } from '@ng-icons/core';
-import { bootstrapImages } from '@ng-icons/bootstrap-icons';
-import { bootstrapCollectionFill } from '@ng-icons/bootstrap-icons';
-import { bootstrapTrash } from '@ng-icons/bootstrap-icons';
+import { bootstrapImages, bootstrapCollectionFill, bootstrapTrash} from '@ng-icons/bootstrap-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -29,7 +29,8 @@ import { bootstrapTrash } from '@ng-icons/bootstrap-icons';
       bootstrapImages, 
       bootstrapCollectionFill, 
       bootstrapTrash
-  })],
+  }), UserService
+],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

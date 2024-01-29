@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 import { NavbarComponent } from './navbar/navbar.component';
 
 @Component({
@@ -9,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule,
     NavbarComponent
   ],
+  providers: [HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
