@@ -20,7 +20,6 @@ const port = process.env.PORT
 const AppDataSource = new DataSource({
     type: "mysql",
     host: dbHost,
-    port: 3306,
     username: dbUser,
     password: dbPass,
     database: dbName,
