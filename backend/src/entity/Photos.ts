@@ -9,7 +9,6 @@ import {
 
 import { User } from "./User";
 import { Trash } from "./Trash";
-import { Album } from "./Album";
 import { PhotosAlbum } from "./PhotosAlbum";
 
 @Entity({ name: 'photos' })

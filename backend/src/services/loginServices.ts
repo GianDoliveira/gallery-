@@ -6,7 +6,7 @@ import bcrypt = require('bcrypt');
 
 const jwtSecret = "secret"
 
-const generateToken = (id) => {
+const generateToken = (id: number) => {
     return jwt.sign({ id }, jwtSecret, {
         expiresIn: "7d",
     });

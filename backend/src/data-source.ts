@@ -6,6 +6,7 @@ import { Photo } from "./entity/Photos";
 import { Album } from "./entity/Album";
 import { Trash } from "./entity/Trash";
 import { PhotosAlbum } from "./entity/PhotosAlbum";
+import { InvalidToken } from "./entity/Token";
 
 import app from "../app";
 
@@ -25,7 +26,7 @@ const AppDataSource = new DataSource({
     database: dbName,
     synchronize: true,
     logging: false,
-    entities: [User, Photo, Album, Trash, PhotosAlbum],
+    entities: [User, Photo, Album, Trash, PhotosAlbum, InvalidToken],
     migrations: [],
     subscribers: [],
 })
