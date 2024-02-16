@@ -24,7 +24,7 @@ export class User {
     @Column()
     password: string
 
-    @OneToMany(() => Photo, photo => photo.user_id)
+    @OneToMany(() => Photo, photo => photo.user)
     photo: Photo[]
 
     @OneToMany(() => Album, album => album.user_id)
@@ -33,6 +33,6 @@ export class User {
     @OneToMany(() => Trash, trash => trash.user_id)
     trash: Trash[]
 
-    @OneToMany(() => InvalidToken, invalidToken => invalidToken.user_id)
+    @OneToMany(() => InvalidToken, invalidToken => invalidToken.user)
     invalidToken: InvalidToken[];
 }

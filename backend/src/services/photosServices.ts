@@ -19,20 +19,18 @@ cloudinary.v2.config({
 })
 
 const registerPhoto = async (req: Request, res: Response) => {
-  const photoRepository = AppDataSource.getRepository(Photo);
-
   try {
+    const photoRepository = AppDataSource.getRepository(Photo);
     upload.single('image')(req, res, async (err: any) => {
       if (err) {
         console.error(err);
         return res.status(500).json({ error: 'Erro durante o upload da imagem' });
       }
-
       const { title, description} = req.body;
       const imagem_url = req.file ? req.file.path : null;
-      const user_id = req.id ? parseInt(req.id, 10) : null;
+      const user = req.id ? parseInt(req.id, 10) : null;
 
-      if (!title || !imagem_url || !description) {
+      if (!title || !imagem_url) {
         return res.status(400).json({ error: 'Os campos são obrigatórios' });
       }
 
@@ -45,7 +43,7 @@ const registerPhoto = async (req: Request, res: Response) => {
           imagem_url: cloudinaryResponse.secure_url,
           title,
           description,
-          user_id,
+          user,
         } as DeepPartial<Photo>);
 
         await photoRepository.save(createPhoto);
@@ -63,4 +61,26 @@ const registerPhoto = async (req: Request, res: Response) => {
   }
 };
 
-export default registerPhoto;
+const getUserPhotos = async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  try {
+    const photoRepository = AppDataSource.getRepository(Photo);
+    const userPhotos = await photoRepository.find({
+      where: { user: { id: userId },
+     } as any
+    });
+
+    res.status(200).json(userPhotos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao obter as fotos do usuário' });
+  }
+};
+
+export default getUserPhotos;
+
+
+module.exports = {
+  registerPhoto,
+  getUserPhotos
+};

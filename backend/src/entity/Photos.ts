@@ -28,7 +28,7 @@ export class Photo {
 
     @ManyToOne(() => User, user => user.photo)
     @JoinColumn({ name: 'user_id' })
-    user_id: User
+    user: User
 
     @OneToMany(() => Trash, trash => trash.photo_id)
     trash: Trash[]

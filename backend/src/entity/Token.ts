@@ -18,5 +18,5 @@ export class InvalidToken {
 
   @ManyToOne(() => User, user => user.invalidToken)
   @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  user: User;
 }
