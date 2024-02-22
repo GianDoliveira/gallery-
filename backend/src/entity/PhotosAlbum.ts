@@ -16,9 +16,9 @@ export class PhotosAlbum {
 
     @ManyToOne(() => Photo, photo => photo.photoAlbum)
     @JoinColumn({ name: 'photos_id' })
-    photos_id: Photo
+    photosId: Photo
 
     @ManyToOne(() => Album, album => album.photoAlbum)
     @JoinColumn({ name: 'album_id' })
-    album_id: Album
+    albumId: Album
 }

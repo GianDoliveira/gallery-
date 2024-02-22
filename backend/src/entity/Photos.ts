@@ -8,12 +8,10 @@ import {
 } from "typeorm";
 
 import { User } from "./User";
-import { Trash } from "./Trash";
 import { PhotosAlbum } from "./PhotosAlbum";
 
 @Entity({ name: 'photos' })
 export class Photo {
-
     @PrimaryGeneratedColumn()
     id: number
 
@@ -30,9 +28,7 @@ export class Photo {
     @JoinColumn({ name: 'user_id' })
     user: User
 
-    @OneToMany(() => Trash, trash => trash.photo_id)
-    trash: Trash[]
-
-    @OneToMany(() => PhotosAlbum, photoAlbum => photoAlbum.photos_id)
+    @OneToMany(() => PhotosAlbum, photoAlbum => photoAlbum.photosId)
     photoAlbum: PhotosAlbum[]
+    photoId: Photo;
 }

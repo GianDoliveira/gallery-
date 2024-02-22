@@ -4,7 +4,6 @@ import { DataSource } from "typeorm"
 import { User } from "./entity/User";
 import { Photo } from "./entity/Photos";
 import { Album } from "./entity/Album";
-import { Trash } from "./entity/Trash";
 import { PhotosAlbum } from "./entity/PhotosAlbum";
 import { InvalidToken } from "./entity/Token";
 
@@ -26,7 +25,7 @@ const AppDataSource = new DataSource({
     database: dbName,
     synchronize: true,
     logging: false,
-    entities: [User, Photo, Album, Trash, PhotosAlbum, InvalidToken],
+    entities: [User, Photo, Album, PhotosAlbum, InvalidToken],
     migrations: [],
     subscribers: [],
 })

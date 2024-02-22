@@ -24,8 +24,8 @@ export class Album {
 
     @ManyToOne(() => User, user => user.album)
     @JoinColumn({ name: 'user_id' })
-    user_id: User
+    user: User
 
-    @OneToMany(() => PhotosAlbum, photoAlbum => photoAlbum.album_id)
+    @OneToMany(() => PhotosAlbum, photoAlbum => photoAlbum.albumId)
     photoAlbum: PhotosAlbum[]
 }

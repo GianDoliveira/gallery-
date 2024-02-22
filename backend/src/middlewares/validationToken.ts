@@ -1,13 +1,14 @@
 import jwt = require("jsonwebtoken");
 import { Request, Response, NextFunction } from "express";
 
-import { InvalidToken } from "../entity/Token"; 
+import { InvalidToken } from "../entity/Token";
 import AppDataSource from "../data-source";
 
 declare global {
     namespace Express {
         interface Request {
             id?: string;
+            user?: any;
         }
     }
 }
@@ -37,7 +38,7 @@ const validationToken = async (req: Request, res: Response, next: NextFunction) 
         const authHeader = req.headers["authorization"];
         const token = authHeader && authHeader.split(" ")[1];
         const invalidToken = await tokenRepository.findOne({ where: { token } })
-        if(!authHeader) {
+        if (!authHeader) {
             return res.status(401).json({ error: 'Token de autenticação ausente' });
         }
         if (invalidToken) {
