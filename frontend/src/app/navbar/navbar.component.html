@@ -1,0 +1,23 @@
+<nav>
+    <ul>
+        <li>
+            <a (click)="setActive('Fotos')" [ngClass]="{'active': activeLink === 'Fotos'}" routerLink="/">
+                <ng-icon class="icon" name="bootstrapImages"></ng-icon>
+                Fotos
+            </a>
+        </li>
+        <li>
+            <a (click)="setActive('Álbuns')" [ngClass]="{'active': activeLink === 'Álbuns'}" routerLink="/album">
+                <ng-icon class="icon" name="bootstrapCollectionFill"></ng-icon>
+                Álbuns
+            </a>
+        </li>
+        <li>
+            <a (click)="setActive('Lixeira')" [ngClass]="{'active': activeLink === 'Lixeira'}" routerLink="/trash">
+                <ng-icon class="icon" name="bootstrapTrash"></ng-icon>
+                Lixeira
+            </a>
+        </li>
+    </ul>
+</nav>
+<router-outlet></router-outlet>
