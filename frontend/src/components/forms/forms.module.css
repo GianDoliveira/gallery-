@@ -70,29 +70,29 @@ main {
     outline: none;
 }
 
-.form-container {
+.formContainer {
     position: absolute;
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
 }
 
-.sign-in {
+.signIn {
     left: 0;
     width: 50%;
     z-index: 2;
 }
-.container.active .sign-in {
+.container.active .signIn {
     transform: translateX(100%);
 }
 
-.sign-up {
+.signUp {
     left: 0;
     width: 50%;
     opacity: 0;
     z-index: 1;
 }
-.container.active .sign-up {
+.container.active .signUp {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
@@ -110,10 +110,10 @@ main {
     }
 }
 
-.social-icons {
+.socialIcons {
     margin: 20px 0;
 }
-.social-icons a {
+.socialIcons a {
     border: 1px solid #ccc;
     border-radius: 20%;
     display: inline-flex;
@@ -124,7 +124,7 @@ main {
     height: 40px;
 }
 
-.toggle-container {
+.toggleContainer {
     position: absolute;
     top: 0;
     left: 50%;
@@ -135,7 +135,7 @@ main {
     border-radius: 150px 0 0 100px;
     z-index: 1000;
 }
-.container.active .toggle-container  {
+.container.active .toggleContainer  {
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }  
@@ -155,7 +155,7 @@ main {
     transform: translateX(50%);
 }
 
-.toggle-panel {
+.togglePanel {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -171,19 +171,19 @@ main {
 
 }
 
-.toggle-left {
+.toggleLeft {
     transform: translateX(-200%);
 }
 
-.container.active .toggle-left {
+.container.active .toggleLeft {
     transform: translateX(0);
 }
 
-.toggle-right {
+.toggleRight {
     right: 0;
     transform: translateX(0);
 }
 
-.container.active .toggle-right {
+.container.active .toggleRight {
     transform: translateX(200%);
 }

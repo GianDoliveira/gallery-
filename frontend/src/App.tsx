@@ -4,7 +4,7 @@ import FormsComponent from './components/forms/Forms'
 function App() {
   return (
     <>
-      <FormsComponent/>
+      <FormsComponent />
     </>
   )
 }
