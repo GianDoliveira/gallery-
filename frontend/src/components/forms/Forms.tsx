@@ -1,5 +1,6 @@
 import styles from './forms.module.css';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useAuth } from '../../contexts/useAuth';
 import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa";
 
 const FormsComponent: React.FC = () => {
@@ -7,6 +8,19 @@ const FormsComponent: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const registerBtnRef = useRef<HTMLButtonElement>(null);
     const loginBtnRef = useRef<HTMLButtonElement>(null);
+
+    const [ email, setEmail ] = useState("");
+    const [ password, setPassword ] = useState("");
+    const { login }: any = useAuth();
+
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+        if(email === "user" && password === "password") {
+            await login({ email });
+        } else {
+            alert("nome de usuário ou senha inválidos")
+        }
+    }
 
     useEffect(() => {
         const container = containerRef.current;
@@ -26,7 +40,7 @@ const FormsComponent: React.FC = () => {
         <main>
             <section className={styles.container} ref={containerRef} id="container">
                 <div className={`${styles.signUp} ${styles.formContainer}`}>
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <h1>Cadastre-se</h1>
                         <div className={styles.socialIcons}>
                             <a href="#"><FaGoogle /></a>
@@ -49,10 +63,10 @@ const FormsComponent: React.FC = () => {
                             <a href="#"><FaFacebook /></a>
                         </div>
                         <span>ou use seu e-mail e senha</span>
-                        <input type="email" id="email2" placeholder="E-mail" />
-                        <input type="password" id="password2" placeholder="Senha" />
+                        <input type="email" id="email2" placeholder="E-mail" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                        <input type="password" id="password2" placeholder="Senha" value={password} onChange={(e)=>setPassword(e.target.value)} />
                         <a href="#">Esqueceu a sua senha ?</a>
-                        <button>Login</button>
+                        <button type='submit'>Login</button>
                     </form>
                 </div>
                 <div className={styles.toggleContainer}>
