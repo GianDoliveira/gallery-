@@ -1,26 +1,13 @@
 import styles from './forms.module.css';
-import React, { useEffect, useRef, useState } from 'react';
-import { useAuth } from '../../contexts/useAuth';
 import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa";
+
+import React, { useRef, useEffect } from 'react';
 
 const FormsComponent: React.FC = () => {
 
     const containerRef = useRef<HTMLDivElement>(null);
     const registerBtnRef = useRef<HTMLButtonElement>(null);
     const loginBtnRef = useRef<HTMLButtonElement>(null);
-
-    const [ email, setEmail ] = useState("");
-    const [ password, setPassword ] = useState("");
-    const { login }: any = useAuth();
-
-    const handleLogin = async (e: any) => {
-        e.preventDefault();
-        if(email === "user" && password === "password") {
-            await login({ email });
-        } else {
-            alert("nome de usuário ou senha inválidos")
-        }
-    }
 
     useEffect(() => {
         const container = containerRef.current;
@@ -35,12 +22,12 @@ const FormsComponent: React.FC = () => {
             container?.classList.remove(styles.active);
         });
     }, []);
-
+  
     return (
         <main>
             <section className={styles.container} ref={containerRef} id="container">
                 <div className={`${styles.signUp} ${styles.formContainer}`}>
-                    <form onSubmit={handleLogin}>
+                    <form>
                         <h1>Cadastre-se</h1>
                         <div className={styles.socialIcons}>
                             <a href="#"><FaGoogle /></a>
@@ -48,10 +35,16 @@ const FormsComponent: React.FC = () => {
                             <a href="#"><FaFacebook /></a>
                         </div>
                         <span>ou use seu e-mail para cadastro</span>
-                        <input type="text" id="username" placeholder="Nome de usuário" />
-                        <input type="email" id="email1" placeholder="E-mail" />
-                        <input type="password" id="password1" placeholder="Senha" />
-                        <button>Cadastrar</button>
+                        <input
+                            type="text" placeholder="Nome de usuário" required
+                        />
+                        <input
+                            type="email" placeholder="E-mail" required
+                        />
+                        <input
+                            type="password" placeholder="Senha" required
+                        />
+                        <button type='submit'>Cadastrar</button>
                     </form>
                 </div>
                 <div className={`${styles.formContainer} ${styles.signIn}`}>
@@ -63,8 +56,12 @@ const FormsComponent: React.FC = () => {
                             <a href="#"><FaFacebook /></a>
                         </div>
                         <span>ou use seu e-mail e senha</span>
-                        <input type="email" id="email2" placeholder="E-mail" value={email} onChange={(e)=>setEmail(e.target.value)} />
-                        <input type="password" id="password2" placeholder="Senha" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <input
+                            type="email" placeholder="E-mail" required
+                        />
+                        <input
+                            type="password" placeholder="Senha" required
+                        />
                         <a href="#">Esqueceu a sua senha ?</a>
                         <button type='submit'>Login</button>
                     </form>
@@ -73,7 +70,7 @@ const FormsComponent: React.FC = () => {
                     <div className={styles.toggle}>
                         <div className={`${styles.togglePanel} ${styles.toggleLeft}`}>
                             <h1>Bem-vindo de volta!</h1>
-                            <p>Insira seus dados pessoais para usar todos os recursos do site</p>
+                            <p>Insira seus dados para usar todos os recursos do site</p>
                             <button
                                 className={styles.hidden}
                                 id="login"
