@@ -24,7 +24,7 @@ const FormsComponent: React.FC = () => {
     }, []);
   
     return (
-        <main>
+        <main className={styles.main}>
             <section className={styles.container} ref={containerRef} id="container">
                 <div className={`${styles.signUp} ${styles.formContainer}`}>
                     <form>

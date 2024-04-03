@@ -1,5 +1,5 @@
 import './App.css'
-import FormsComponent from './components/pages/Forms.tsx'
+import FormsComponent from './components/pages/forms/Forms.tsx'
 
 
 function App() {
