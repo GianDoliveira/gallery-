@@ -1,5 +1,6 @@
 import styles from './forms.module.css';
-import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa";
+import LoginComponent from './Login';
+import SignUpComponent from './SignUp';
 
 import React, { useRef, useEffect } from 'react';
 
@@ -27,44 +28,10 @@ const FormsComponent: React.FC = () => {
         <main className={styles.main}>
             <section className={styles.container} ref={containerRef} id="container">
                 <div className={`${styles.signUp} ${styles.formContainer}`}>
-                    <form>
-                        <h1>Cadastre-se</h1>
-                        <div className={styles.socialIcons}>
-                            <a href="#"><FaGoogle /></a>
-                            <a href="#"><FaGithub /></a>
-                            <a href="#"><FaFacebook /></a>
-                        </div>
-                        <span>ou use seu e-mail para cadastro</span>
-                        <input
-                            type="text" placeholder="Nome de usuário" required
-                        />
-                        <input
-                            type="email" placeholder="E-mail" required
-                        />
-                        <input
-                            type="password" placeholder="Senha" required
-                        />
-                        <button type='submit'>Cadastrar</button>
-                    </form>
+                    <SignUpComponent />
                 </div>
                 <div className={`${styles.formContainer} ${styles.signIn}`}>
-                    <form>
-                        <h1>Login</h1>
-                        <div className={styles.socialIcons}>
-                            <a href="#"><FaGoogle /></a>
-                            <a href="#"><FaGithub /></a>
-                            <a href="#"><FaFacebook /></a>
-                        </div>
-                        <span>ou use seu e-mail e senha</span>
-                        <input
-                            type="email" placeholder="E-mail" required
-                        />
-                        <input
-                            type="password" placeholder="Senha" required
-                        />
-                        <a href="#">Esqueceu a sua senha ?</a>
-                        <button type='submit'>Login</button>
-                    </form>
+                    <LoginComponent/>
                 </div>
                 <div className={styles.toggleContainer}>
                     <div className={styles.toggle}>
@@ -98,3 +65,4 @@ const FormsComponent: React.FC = () => {
 }
 
 export default FormsComponent;
+
