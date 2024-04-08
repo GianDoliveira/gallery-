@@ -3,7 +3,6 @@ import styles from "./photos.module.css";
 import axios from "axios";
 
 import PhotosUploader from "./PhotosUploader";
-import Navbar from "../pages/Navbar/Navbar";
 import PhotosList from "./PhotosList";
 
 const PhotosComponent = () => {
@@ -32,7 +31,6 @@ const PhotosComponent = () => {
     if (!isLoaded) {
         return (
             <main className={styles.main}>
-                <Navbar />
                 <section className={styles.container}>
                     <div className={styles.inputBx}>
                         <h2 className={styles.titleUpload}>Envie a sua imagem</h2>
@@ -44,7 +42,6 @@ const PhotosComponent = () => {
     }
     return (
         <main className={styles.main}>
-            <Navbar />
             <PhotosList photos={photosList} />
         </main>
     )

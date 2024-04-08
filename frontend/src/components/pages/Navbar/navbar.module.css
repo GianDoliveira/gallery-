@@ -10,6 +10,12 @@
     background-color: #efefef;
 }
 
+.navLogin {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
 .navbar ul {
     list-style: none;
     padding: 0;

@@ -1,10 +1,8 @@
-import Navbar from "../pages/Navbar/Navbar";
 import styles from "./album.module.css";
 
-const Album = () => {
+const AlbumComponent = () => {
     return (
         <main className={styles.main}>
-            <Navbar />
             <section className={styles.container}>
                 <p>Albúms estão aqui!</p>
             </section>
@@ -12,4 +10,4 @@ const Album = () => {
     )
 }
 
-export default Album;
+export default AlbumComponent;
