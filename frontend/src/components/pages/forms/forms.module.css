@@ -1,4 +1,10 @@
-main {
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
     background-color: #c9d6ff;
     background: linear-gradient(to right, #e2e2e2, #bdddbf);
     display: flex;
@@ -110,20 +116,6 @@ main {
     }
 }
 
-.socialIcons {
-    margin: 20px 0;
-}
-.socialIcons a {
-    border: 1px solid #ccc;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
-
 .toggleContainer {
     position: absolute;
     top: 0;
@@ -187,3 +179,9 @@ main {
 .container.active .toggleRight {
     transform: translateX(200%);
 }
+
+.mensagem {
+    font-size: 2rem;
+    margin-top: 3rem;
+    font-weight: bold;
+  }

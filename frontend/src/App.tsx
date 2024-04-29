@@ -1,10 +1,17 @@
-import './App.css'
-import FormsComponent from './components/forms/Forms'
+import { Outlet } from 'react-router-dom'
+
+import { UserProvider } from './Context/useAuth.tsx'
+import { ToastContainer } from 'react-toastify'
+import Navbar from './components/pages/Navbar/Navbar.tsx'
 
 function App() {
   return (
     <>
-      <FormsComponent />
+      <UserProvider>
+        <Navbar />
+        <Outlet />
+        <ToastContainer />
+      </UserProvider>
     </>
   )
 }

@@ -33,7 +33,7 @@ const registerAlbum = async (req: Request, res: Response) => {
 };
 
 const getAlbums = async (req: Request, res: Response) => {
-    const userId = req.params.userId;
+    const userId = req.userId;
     try {
         const albumRepository = AppDataSource.getRepository(Album);
         const userAlbum = await albumRepository.find({
