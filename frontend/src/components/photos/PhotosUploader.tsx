@@ -1,56 +1,66 @@
 import React, { useState } from "react";
-import axios from "axios";
-
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { usePhoto } from "../../Context/photoContext";
+import { useAuth } from "../../Context/useAuth";
 import styles from "./photos.module.css";
 
-const PhotosUploader: React.FC = () => {
-    const [file, setFile] = useState<File | null>(null);
+const PhotosUploader = () => {
+  const { uploadPhoto } = usePhoto();
+  const { isLoggedIn, user } = useAuth();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const navigate = useNavigate();
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-        }
-    };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
 
-    const handleSubmit = async () => {
-        if (!file) return;
+  const handleSubmit = async () => {
+    if (!isLoggedIn()) {
+      navigate('/login');
+      return;
+    }
+    if (!selectedFile) {
+      // Verifique se um arquivo foi selecionado antes de enviar
+      return;
+    }
 
-        try {
-            const formData = new FormData();
-            formData.append('image', file);
+    const userId = user?.id;
 
-            await axios.post('http://localhost:3006/:userId/photos', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+    const formData = new FormData();
+    formData.append("photo", selectedFile);
 
-            alert('Photo uploaded successfully');
-        } catch (error) {
-            console.error('Error uploading photo:', error);
-        }
-    };
+    try {
+      await uploadPhoto(userId, formData);
+      // Limpe o estado após o envio bem-sucedido, se necessário
+      setSelectedFile(null);
+    } catch (error) {
+      console.error("Erro ao enviar foto:", error);
+      // Lidar com erros de envio de foto, se necessário
+    }
+  };
 
-    return (
-        <form action="">
-            <input 
-                type="file" 
-                id="upload" 
-                accept=".jpeg, .png, .gif, .jpg" 
-                hidden 
-                onChange={handleFileChange}
-            />
-            <label 
-                onClick={handleSubmit} 
-                htmlFor="upload" 
-                className={styles.uploadLabel}
-            >
-                <span><FaCloudUploadAlt /></span>
-                <p>Clique para Enviar</p>
-            </label>
-        </form>
-    )
-}
+  return (
+    <form>
+      <input
+        type="file"
+        id="upload"
+        accept=".jpeg, .png, .gif, .jpg"
+        hidden
+        onChange={handleFileChange}
+      />
+      <label htmlFor="upload" className={styles.uploadLabel}>
+        <span><FaCloudUploadAlt /></span>
+        <p>Clique para Enviar</p>
+      </label>
+      <button type="button" onClick={handleSubmit}>
+        Enviar Foto
+      </button>
+    </form>
+  );
+};
 
 export default PhotosUploader;

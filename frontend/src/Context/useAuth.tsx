@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { UserProfile } from "../Models/User";
+import { UserProfile } from "../Models/ModelType";
 import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../services/AuthServices";
 import { toast } from "react-toastify";
@@ -52,7 +52,6 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.token!);
           setUser(userObj!);
-          toast.success("registration success!");
           navigate("/fotos");
         }
       })
@@ -71,7 +70,6 @@ export const UserProvider = ({ children }: Props) => {
           localStorage.setItem("user", JSON.stringify(userObj));
           setToken(res?.data.token!);
           setUser(userObj!);
-          toast.success("Login Success!");
           navigate("/fotos");
         }
       })

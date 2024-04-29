@@ -13,7 +13,7 @@ const PhotosComponent = () => {
     useEffect(() => {
         const fetchPhotos = async () => {
             try {
-                const response = await axios.get('http://localhost:3006/:userId/photos');
+                const response = await axios.get(`http://localhost:3006/:userId/photos`);
                 setphotosList(response.data);
                 setIsLoading(false);
             } catch (error) {
@@ -28,22 +28,24 @@ const PhotosComponent = () => {
         fetchPhotos();
     }, [isLoading, photosList]);
 
-    if (!isLoaded) {
-        return (
-            <main className={styles.main}>
-                <section className={styles.container}>
-                    <div className={styles.inputBx}>
-                        <h2 className={styles.titleUpload}>Envie a sua imagem</h2>
-                        <PhotosUploader />
-                    </div>
-                </section>
-            </main>
-        )
-    }
     return (
-        <main className={styles.main}>
-            <PhotosList photos={photosList} />
-        </main>
+        <div>
+            <h1>Suas Fotos!</h1>
+            {isLoaded ? (
+                <main className={styles.main}>
+                    <section className={styles.container}>
+                        <div className={styles.inputBx}>
+                            <h2 className={styles.titleUpload}>Envie a sua imagem</h2>
+                            <PhotosUploader />
+                        </div>
+                    </section>
+                </main>
+            ) : (
+                <div className={styles.main}>
+                    <PhotosList/>
+                </div>
+            )}
+        </div>
     )
 }
 
