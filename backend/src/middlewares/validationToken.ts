@@ -13,25 +13,6 @@ declare global {
     }
 }
 
-const validateUserId = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const tokenUserId = req.id ? parseInt(req.id, 10) : null;
-        const requestUserId = parseInt(req.params.userId, 10); // Supondo que o ID do usuário esteja disponível nos parâmetros da solicitação
-
-        if (tokenUserId !== requestUserId) {
-            return res.status(401).json({ error: "Acesso não autorizado" });
-        }
-
-        // O ID do usuário no token corresponde ao ID na solicitação, continue com o processamento
-        next();
-    } catch (error) {
-        res.status(500).json({
-            error: "Ocorreu algum erro no sistema, tente novamente mais tarde",
-            details: error.message
-        });
-    }
-};
-
 const validationToken = async (req: Request, res: Response, next: NextFunction) => {
     const tokenRepository = AppDataSource.getRepository(InvalidToken);
     try {
@@ -52,7 +33,7 @@ const validationToken = async (req: Request, res: Response, next: NextFunction) 
             } else {
                 req.id = decoded.id;
             }
-            validateUserId(req, res, next);
+            next();
         });
     } catch (error) {
         res.status(500).json({
