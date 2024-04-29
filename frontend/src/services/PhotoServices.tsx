@@ -12,36 +12,36 @@ const api = axios.create({
     },
 });
 
-export const photoGet = async (userId: number) => {
+export const photoGet = async () => {
     try {
-        const { data } = await axios.get<PhotoProfile[]>(`${api}/${userId}/photos`)
+        const { data } = await axios.get<PhotoProfile[]>(`${api}}/photos`)
         return data;
     } catch (error) {
         handleError(error);
     }
 }
 
-export const photoPost = async (userId: number) => {
+export const photoPost = async () => {
     try {
-        const { data } = await axios.post<PhotoProfile[]>(`${api}/${userId}/photos`)
+        const { data } = await axios.post<PhotoProfile[]>(`${api}/photos`)
         return data;
     } catch (error) {
         handleError(error);
     }
 }
 
-export const photoUpdate = async (userId: number) => {
+export const photoUpdate = async () => {
     try {
-        const { data } = await axios.put<PhotoProfile[]>(`${api}/${userId}/photos/update`)
+        const { data } = await axios.put<PhotoProfile[]>(`${api}/photos/update`)
         return data;
     } catch (error) {
         handleError(error);
     }
 }
 
-export const photoDelete = async (userId: number, id: number) => {
+export const photoDelete = async (id: number) => {
     try {
-        const { data } = await axios.delete<PhotoProfile[]>(`${api}/${userId}/photos/delete/${id}`)
+        const { data } = await axios.delete<PhotoProfile[]>(`${api}/photos/delete/${id}`)
         return data;
     } catch (error) {
         handleError(error);

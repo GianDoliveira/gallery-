@@ -13,7 +13,7 @@ const PhotosComponent = () => {
     useEffect(() => {
         const fetchPhotos = async () => {
             try {
-                const response = await axios.get(`http://localhost:3006/:userId/photos`);
+                const response = await axios.get(`http://localhost:3006/photos`);
                 setphotosList(response.data);
                 setIsLoading(false);
             } catch (error) {

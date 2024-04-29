@@ -7,10 +7,10 @@ import axios from "axios";
 
 type PhotoContextType = {
   photos: PhotoProfile[] | null;
-  getPhotos: (userId: number) => void;
-  uploadPhoto: (userId: number, photoData: FormData) => void;
-  updatePhoto: (userId: number, photoId: number, updatedData: Partial<PhotoProfile>) => void;
-  deletePhoto: (userId: number, photoId: number) => void;
+  getPhotos: () => void;
+  uploadPhoto: (photoData: FormData) => void;
+  updatePhoto: (photoId: number, updatedData: Partial<PhotoProfile>) => void;
+  deletePhoto: (photoId: number) => void;
 };
 
 type Props = { children: React.ReactNode };
@@ -21,9 +21,9 @@ export const PhotoProvider = ({ children }: Props) => {
   const [photos, setPhotos] = useState<PhotoProfile[] | null>(null);
   const [isReady, setIsReady] = useState(false);
 
-  const getPhotos = async (userId: number) => {
+  const getPhotos = async () => {
     try {
-      const { data } = await axios.get<PhotoProfile[]>(`http://localhost:3006/${userId}/photos`);
+      const { data } = await axios.get<PhotoProfile[]>(`http://localhost:3006/photos`);
       setPhotos(data);
       setIsReady(true)
     } catch (error) {
@@ -31,9 +31,9 @@ export const PhotoProvider = ({ children }: Props) => {
     }
   };
 
-  const uploadPhoto = async (userId: number, photoData: FormData) => {
+  const uploadPhoto = async (photoData: FormData) => {
     try {
-      const { data } = await axios.post<PhotoProfile[]>(`http://localhost:3006/${userId}/photos`, photoData);
+      const { data } = await axios.post<PhotoProfile[]>(`http://localhost:3006/photos`, photoData);
       setPhotos(data);
       toast.success("Photo uploaded successfully");
     } catch (error) {
@@ -41,9 +41,9 @@ export const PhotoProvider = ({ children }: Props) => {
     }
   };
 
-  const updatePhoto = async (userId: number, photoId: number, updatedData: Partial<PhotoProfile>) => {
+  const updatePhoto = async (photoId: number, updatedData: Partial<PhotoProfile>) => {
     try {
-      const { data } = await axios.put<PhotoProfile[]>(`http://localhost:3006/${userId}/photos/update/${photoId}`, updatedData);
+      const { data } = await axios.put<PhotoProfile[]>(`http://localhost:3006/photos/update/${photoId}`, updatedData);
       setPhotos(data);
       toast.success("Photo updated successfully");
     } catch (error) {
@@ -51,9 +51,9 @@ export const PhotoProvider = ({ children }: Props) => {
     }
   };
 
-  const deletePhoto = async (userId: number, photoId: number) => {
+  const deletePhoto = async (photoId: number) => {
     try {
-      await axios.delete<PhotoProfile[]>(`http://localhost:3006/${userId}/photos/delete/${photoId}`);
+      await axios.delete<PhotoProfile[]>(`http://localhost:3006/photos/delete/${photoId}`);
       setPhotos(prevPhotos => (prevPhotos ? prevPhotos.filter(photo => photo.id !== photoId) : []));
       toast.success("Photo deleted successfully");
     } catch (error) {

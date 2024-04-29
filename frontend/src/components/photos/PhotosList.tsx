@@ -1,15 +1,12 @@
 import { useEffect } from "react";
 import { usePhoto } from "../../Context/photoContext";
-import { useAuth } from "../../Context/useAuth";
 
 const PhotoList = () => {
     const { photos, getPhotos } = usePhoto();
-    const { user } = useAuth();
 
     useEffect(() => {
         const fetchPhotos = async () => {
-            const userId = user?.id;
-            getPhotos(userId);
+            getPhotos;
         };
         fetchPhotos();
     }, [getPhotos]);

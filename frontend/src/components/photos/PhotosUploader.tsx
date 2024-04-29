@@ -7,7 +7,7 @@ import styles from "./photos.module.css";
 
 const PhotosUploader = () => {
   const { uploadPhoto } = usePhoto();
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const navigate = useNavigate();
 
@@ -28,13 +28,11 @@ const PhotosUploader = () => {
       return;
     }
 
-    const userId = user?.id;
-
     const formData = new FormData();
     formData.append("photo", selectedFile);
 
     try {
-      await uploadPhoto(userId, formData);
+      await uploadPhoto( formData);
       // Limpe o estado após o envio bem-sucedido, se necessário
       setSelectedFile(null);
     } catch (error) {
