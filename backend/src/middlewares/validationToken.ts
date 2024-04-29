@@ -8,7 +8,7 @@ declare global {
     namespace Express {
         interface Request {
             id?: string;
-            user?: any;
+            userId?: string;
         }
     }
 }
@@ -29,9 +29,9 @@ const validationToken = async (req: Request, res: Response, next: NextFunction) 
         jwt.verify(token, "secret", (err, decoded) => {
             if (err) return res.status(401).json({ error: "Token inválido" });
             if (typeof decoded === 'string') {
-                req.id = decoded;
+                req.userId = decoded;
             } else {
-                req.id = decoded.id;
+                req.userId = decoded.userId; // Alterado para userId
             }
             next();
         });

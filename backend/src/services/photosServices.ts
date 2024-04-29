@@ -62,7 +62,7 @@ const registerPhoto = async (req: Request, res: Response) => {
 };
 
 const getPhotos = async (req: Request, res: Response) => {
-  const userId = req.params.userId;
+  const userId = req.userId;
   try {
     const photoRepository = AppDataSource.getRepository(Photo);
     const userPhotos = await photoRepository.find({

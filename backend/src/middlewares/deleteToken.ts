@@ -14,10 +14,8 @@ const deleteToken = async (req: Request, res: Response, next: NextFunction) => {
 
         const tokenRepository = AppDataSource.getRepository(InvalidToken);
 
-        // Verificar se o token já está na tabela InvalidToken
         const existingToken = await tokenRepository.findOne({ where: { token } });
         if (!existingToken) {
-            // Se não existir, adicionar à tabela
             const invalidToken = tokenRepository.create({
                 token
             });
