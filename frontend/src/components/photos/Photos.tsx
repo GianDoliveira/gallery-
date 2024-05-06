@@ -30,7 +30,6 @@ const PhotosComponent = () => {
 
     return (
         <div>
-            <h1>Suas Fotos!</h1>
             {isLoaded ? (
                 <main className={styles.main}>
                     <section className={styles.container}>

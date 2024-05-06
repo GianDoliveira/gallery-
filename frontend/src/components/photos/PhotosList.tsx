@@ -6,7 +6,7 @@ const PhotoList = () => {
 
     useEffect(() => {
         const fetchPhotos = async () => {
-            getPhotos;
+            await getPhotos();
         };
         fetchPhotos();
     }, [getPhotos]);

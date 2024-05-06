@@ -7,10 +7,10 @@ import axios from "axios";
 
 type PhotoContextType = {
   photos: PhotoProfile[] | null;
-  getPhotos: () => void;
-  uploadPhoto: (photoData: FormData) => void;
-  updatePhoto: (photoId: number, updatedData: Partial<PhotoProfile>) => void;
-  deletePhoto: (photoId: number) => void;
+  getPhotos: () => Promise<void>;
+  uploadPhoto: (photoData: FormData) => Promise<void>;
+  updatePhoto: (photoId: number, updatedData: Partial<PhotoProfile>) => Promise<void>;
+  deletePhoto: (photoId: number) => Promise<void>;
 };
 
 type Props = { children: React.ReactNode };
